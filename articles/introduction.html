@@ -84,7 +84,7 @@
       <h1 data-toc-skip>Overview of the SPIAT package</h1>
                         <h4 class="author">Anna Trigos, Tom Yang, Volkan Ozkoban</h4>
             
-            <h4 class="date">16 August 2020</h4>
+            <h4 class="date">17 August 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/cancer-evolution/SPIAT/blob/master/vignettes/introduction.Rmd"><code>vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -106,36 +106,37 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">SPIAT</span>)
 
 <span class="co"># specify markers</span>
-<span class="no">markers</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DAPI"</span>,<span class="st">"CD3"</span>,<span class="st">"PDL1"</span>,<span class="st">"FOXP3"</span>,<span class="st">"CD4"</span>,<span class="st">"CD8"</span>,<span class="st">"AMACR"</span>)
+<span class="no">markers</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"DAPI"</span>,<span class="st">"CD3"</span>,<span class="st">"PDL1"</span>,<span class="st">"CD4"</span>,<span class="st">"CD8"</span>,<span class="st">"AMACR"</span>)
+
 <span class="no">markers</span></pre></body></html></div>
-<pre><code>## [1] "DAPI"  "CD3"   "PDL1"  "FOXP3" "CD4"   "CD8"   "AMACR"</code></pre>
+<pre><code>## [1] "DAPI"  "CD3"   "PDL1"  "CD4"   "CD8"   "AMACR"</code></pre>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># specify columns of interest</span>
-<span class="no">intensity_columns_interest</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Nucleus DAPI (DAPI) Mean (Normalized Counts, Total Weighting)"</span>,<span class="st">"Cytoplasm CD3 (Opal 520) Mean (Normalized Counts, Total Weighting)"</span>,
-                                <span class="st">"Membrane PDL-1 (Opal 540) Mean (Normalized Counts, Total Weighting)"</span>, <span class="st">"Cytoplasm FOXP3 (Opal 570) Mean (Normalized Counts, Total Weighting)"</span>,
-                                <span class="st">"Cytoplasm CD4 (Opal 620) Mean (Normalized Counts, Total Weighting)"</span>, <span class="st">"Cytoplasm CD8 (Opal 650) Mean (Normalized Counts, Total Weighting)"</span>,
-                                <span class="st">"Cytoplasm AMACR (Opal 690) Mean (Normalized Counts, Total Weighting)"</span>)
+<span class="no">intensity_columns_interest</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+  <span class="st">"Nucleus DAPI (DAPI) Mean (Normalized Counts, Total Weighting)"</span>,
+  <span class="st">"Cytoplasm CD3 (Opal 520) Mean (Normalized Counts, Total Weighting)"</span>,
+  <span class="st">"Membrane PDL-1 (Opal 540) Mean (Normalized Counts, Total Weighting)"</span>,
+  <span class="st">"Cytoplasm CD4 (Opal 620) Mean (Normalized Counts, Total Weighting)"</span>,
+  <span class="st">"Cytoplasm CD8 (Opal 650) Mean (Normalized Counts, Total Weighting)"</span>,
+  <span class="st">"Cytoplasm AMACR (Opal 690) Mean (Normalized Counts, Total Weighting)"</span>
+  )
 <span class="no">intensity_columns_interest</span></pre></body></html></div>
 <pre><code>## [1] "Nucleus DAPI (DAPI) Mean (Normalized Counts, Total Weighting)"       
 ## [2] "Cytoplasm CD3 (Opal 520) Mean (Normalized Counts, Total Weighting)"  
 ## [3] "Membrane PDL-1 (Opal 540) Mean (Normalized Counts, Total Weighting)" 
-## [4] "Cytoplasm FOXP3 (Opal 570) Mean (Normalized Counts, Total Weighting)"
-## [5] "Cytoplasm CD4 (Opal 620) Mean (Normalized Counts, Total Weighting)"  
-## [6] "Cytoplasm CD8 (Opal 650) Mean (Normalized Counts, Total Weighting)"  
-## [7] "Cytoplasm AMACR (Opal 690) Mean (Normalized Counts, Total Weighting)"</code></pre>
+## [4] "Cytoplasm CD4 (Opal 620) Mean (Normalized Counts, Total Weighting)"  
+## [5] "Cytoplasm CD8 (Opal 650) Mean (Normalized Counts, Total Weighting)"  
+## [6] "Cytoplasm AMACR (Opal 690) Mean (Normalized Counts, Total Weighting)"</code></pre>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># load example data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"formatted_image"</span>)</pre></body></html></div>
 <p><code>formatted_image</code> contains example Inform data already formatted. To load data from a raw Inform file, example code is below.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">#####Initializing#####
-
-#Formats an INFORM or HALO image into a singlecellexperiment class
-#where the count assay stores the expression level of every marker (rows) for
-#every cell (columns), and cell phenotype, x and y coordinates are stored
-#under colData
+<div class="sourceCode" id="cb6"><html><body><pre class="r">#Formats an INFORM or HALO image into a singlecellexperiment class
+#where the count assay stores the expression level of every marker (rows) for every cell (columns), and cell phenotype, x and y coordinates are stored under colData
+#raw_inform_data &lt;- "S6_[49209,17530]_cell_seg_data.txt"
 #formatted_image &lt;- format_image_to_sce(format="INFORM",
-                                       #image=raw_inform_data,
-                                       #markers=markers,
-                                       #dye_columns_interest=NULL,
-                                       #intensity_columns_interest=intensity_columns_interest)</pre></body></html></div>
+                                #        image=raw_inform_data,
+                                #        markers=markers,
+                                #        dye_columns_interest=NULL,
+                                # intensity_columns_interest=intensity_columns_interest)</pre></body></html></div>
 <p>Select the phenotypes in the image.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/print_phenotypes.html">print_phenotypes</a></span>(<span class="no">formatted_image</span>)</pre></body></html></div>
 <pre><code>## [1] "AMACR"   "CD3,CD4" "CD3,CD8" "PDL1"</code></pre>
@@ -144,7 +145,6 @@
                                                     <span class="st">"CD3,CD4"</span>,
                                                     <span class="st">"CD3,CD8"</span>,
                                                     <span class="st">"CD3,CD8"</span>,
-                                                <span class="st">"CD3,CD4,FOXP3"</span>,
                                                 <span class="st">"PDL1"</span>,
                                                 <span class="st">"AMACR,PDL1"</span>))</pre></body></html></div>
 </div>
@@ -174,10 +174,7 @@
 <p><img src="introduction_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_expression_boxplot.html">marker_expression_boxplot</a></span>(<span class="no">formatted_image</span>, <span class="st">"PDL1"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># marker_expression_boxplot(formatted_image, "FOXP3")</span>
-<span class="co"># Commenting out FOXP3 as otherwise get </span>
-<span class="co"># "Error in marker_expression_boxplot(formatted_image, "FOXP3") : There are no cells positive for FOXP3"</span>
-<span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_expression_boxplot.html">marker_expression_boxplot</a></span>(<span class="no">formatted_image</span>, <span class="st">"CD4"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_expression_boxplot.html">marker_expression_boxplot</a></span>(<span class="no">formatted_image</span>, <span class="st">"CD4"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-7-3.png" width="700"></p>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_expression_boxplot.html">marker_expression_boxplot</a></span>(<span class="no">formatted_image</span>, <span class="st">"CD8"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-7-4.png" width="700"></p>
@@ -200,62 +197,58 @@
 <p><img src="introduction_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"PDL1"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"FOXP3"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"CD4"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-9-3.png" width="700"></p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"CD4"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"CD8"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-9-4.png" width="700"></p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"CD8"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"AMACR"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-9-5.png" width="700"></p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_marker_level_heatmap.html">plot_marker_level_heatmap</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="st">"AMACR"</span>)</pre></body></html></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-9-6.png" width="700"></p>
 </div>
 <div id="d-surface-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#d-surface-plot" class="anchor"></a>3D surface plot</h2>
 <p>Generates a 3D surface plot of the level of the selected marker. Note that the image is blurred based on the ‘num_splits’ parameter.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_surface_plot.html">marker_surface_plot</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">marker</span><span class="kw">=</span><span class="st">"CD3"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_surface_plot.html">marker_surface_plot</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">marker</span><span class="kw">=</span><span class="st">"CD3"</span>)</pre></body></html></div>
 </div>
 <div id="d-stacked-surface-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#d-stacked-surface-plot" class="anchor"></a>3D stacked surface plot</h2>
 <p>Generates stacked 3D surface plots showing normalized expression level of specified markers.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_surface_plot_stack.html">marker_surface_plot_stack</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">markers</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD4"</span>, <span class="st">"AMACR"</span>))</pre></body></html></div>
-<div id="htmlwidget-80010e3bd3eda129e7ba" style="width:700px;height:432.632880098888px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-80010e3bd3eda129e7ba">{"x":{"visdat":{"4a333df9d37":["function () ","plotlyVisDat"]},"cur_data":"4a333df9d37","attrs":{"4a333df9d37":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":[[0.164275447919544,0.0903225825119645,0.0960991143857712,0.070835999175971,0.208823919803924,0.0928510079678558,0.0938399816181254,0.092560857371069,0.102191603587522,0.0850115773142415],[0.0789055060531444,0.120807891237049,0.071128646037502,0.0645219849560385,0.0793544472252439,0.373285529165856,0.10134289900694,0.104238996342324,0.128597082602653,0.0878530935133014],[0.0653846623119781,0.124650724616783,0.0708972907070199,0.111900634125186,0.0868194726419997,0.128840635113019,0.0699597425921754,0.0978592030060618,0.272540470797486,0.201500293381339],[0.0636423028564624,0.0915684552592701,0.145694147954448,0.197572274039985,0.212252731090625,0.069225806857124,0.0547074411747786,0.0809295908913776,0.793478837167256,0.949091983911312],[0.0614424627094473,0.0786787006626684,0.174610342408287,0.0881497232010843,0.0825661095793766,0.0713957446210648,0.0689233998808435,0.129357952483945,1,0.293572120231999],[0.0599548050287485,0.0778031782793545,0.128293607614383,0.326191244702221,0.0676948537150388,0.0622633747044404,0.101565913940169,0.536731531079585,0.794779454202182,0.600348064515056],[0.0659082010344327,0.0740762924584913,0.20885547016008,0.0962381057781532,0.109099275682264,0.0744504357188839,0.0981640195976444,0.472176911720501,0.42846763987191,0.383776954757159],[0.047443848068767,0,0.0779238583916491,0.216100220692276,0.159451556215155,0.161846566286885,0.126643129608,0.258548267053553,0.465955378676371,0.24151510815582],[0.0654275510773769,0.0580542328438468,0.0698279493622809,0.064337818381218,0.07043301508144,0.0720878484087263,0.0855238386309633,0.138466009359364,0.490628545948842,0.490968402441554],[0.0633832125393829,0.057303334367347,0.0731674771121412,0.0618827531351791,0.0581520952878504,0.0593639670037502,0.0844287530720002,0.199530368018883,0.565090541511334,0.26877354029381]],"type":"surface","colorscale":[[0,1],["rgb(255,255,255)","rgb(193,63,255)"]],"colorbar":{"title":"CD4"},"inherit":true},"4a333df9d37.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":[[1.44160627828233,1.67445123044629,1.68371820074645,1.69752299745022,1.47526418560842,1.75569238064096,1.76467557420692,1.69285196084981,1.76347794901005,1.75416343915002],[1.6989827365944,1.62722065757413,1.68092806122703,1.63186736019234,1.6785632951022,1.20565133631176,1.83010031328123,1.89105076542183,2,1.78888401662997],[1.70057909559824,1.48943598831261,1.73189829273498,1.666466251068,1.71601573326202,1.56340361529885,1.61384500307044,1.7121354526712,1.57348612520917,1.01265782728395],[1.70341847640034,1.82141627662339,1.45987885126886,1.486412174017,1.38584596308882,1.58692394267728,1.53483747909733,1.70793357598519,1.04401548474204,1.0111902531061],[1.61320141064453,1.75030778109795,1.33821218117322,1.88356155094549,1.67900690792371,1.62421108333421,1.63750938470093,1.59276833239683,1.01346212672595,1.00991529803909],[1.6299426119237,1.77577412408589,1.42011328755419,1.03101167684567,1.70164527412716,1.58420013326208,1.71078203920679,1.39544798342261,1.00705694553804,1.01139204455555],[1.66787970844804,1.79681022752445,1.03487934629354,1.85092607647001,1.7311756701668,1.74744815953981,1.76649715207532,1.23172262481145,1.01223589970782,1.00953556322057],[1.36327964304927,1,1.80891954895942,1.25231269052667,1.40311663836236,1.37599774570124,1.8158624399708,1.49560667911353,1.00815726647188,1.01143040160793],[1.37274957309133,1.76765503201375,1.77587272268172,1.66882182831212,1.71583763758062,1.7350987333459,1.6841352797177,1.84434959864139,1.00928240667489,1.24243694819784],[1.71090355235261,1.68610893310534,1.79015260286386,1.63879835026318,1.65243062933009,1.61373681116727,1.63401650440035,1.59903167621278,1.01558006642234,1.33029897084832]],"type":"surface","colorscale":[[0,1],["rgb(255,255,255)","rgb(252,132,199)"]],"colorbar":{"title":"AMACR"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"zaxis":{"title":[]}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.333333333333333}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"CD4","ticklen":2,"len":0.333333333333333,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[[0,"rgb(255,255,255)"],[1,"rgb(193,63,255)"]],"showscale":true,"z":[[0.164275447919544,0.0903225825119645,0.0960991143857712,0.070835999175971,0.208823919803924,0.0928510079678558,0.0938399816181254,0.092560857371069,0.102191603587522,0.0850115773142415],[0.0789055060531444,0.120807891237049,0.071128646037502,0.0645219849560385,0.0793544472252439,0.373285529165856,0.10134289900694,0.104238996342324,0.128597082602653,0.0878530935133014],[0.0653846623119781,0.124650724616783,0.0708972907070199,0.111900634125186,0.0868194726419997,0.128840635113019,0.0699597425921754,0.0978592030060618,0.272540470797486,0.201500293381339],[0.0636423028564624,0.0915684552592701,0.145694147954448,0.197572274039985,0.212252731090625,0.069225806857124,0.0547074411747786,0.0809295908913776,0.793478837167256,0.949091983911312],[0.0614424627094473,0.0786787006626684,0.174610342408287,0.0881497232010843,0.0825661095793766,0.0713957446210648,0.0689233998808435,0.129357952483945,1,0.293572120231999],[0.0599548050287485,0.0778031782793545,0.128293607614383,0.326191244702221,0.0676948537150388,0.0622633747044404,0.101565913940169,0.536731531079585,0.794779454202182,0.600348064515056],[0.0659082010344327,0.0740762924584913,0.20885547016008,0.0962381057781532,0.109099275682264,0.0744504357188839,0.0981640195976444,0.472176911720501,0.42846763987191,0.383776954757159],[0.047443848068767,0,0.0779238583916491,0.216100220692276,0.159451556215155,0.161846566286885,0.126643129608,0.258548267053553,0.465955378676371,0.24151510815582],[0.0654275510773769,0.0580542328438468,0.0698279493622809,0.064337818381218,0.07043301508144,0.0720878484087263,0.0855238386309633,0.138466009359364,0.490628545948842,0.490968402441554],[0.0633832125393829,0.057303334367347,0.0731674771121412,0.0618827531351791,0.0581520952878504,0.0593639670037502,0.0844287530720002,0.199530368018883,0.565090541511334,0.26877354029381]],"type":"surface","frame":null},{"colorbar":{"title":"AMACR","ticklen":2,"len":0.333333333333333,"lenmode":"fraction","y":0.666666666666667,"yanchor":"top"},"colorscale":[[0,"rgb(255,255,255)"],[1,"rgb(252,132,199)"]],"showscale":true,"z":[[1.44160627828233,1.67445123044629,1.68371820074645,1.69752299745022,1.47526418560842,1.75569238064096,1.76467557420692,1.69285196084981,1.76347794901005,1.75416343915002],[1.6989827365944,1.62722065757413,1.68092806122703,1.63186736019234,1.6785632951022,1.20565133631176,1.83010031328123,1.89105076542183,2,1.78888401662997],[1.70057909559824,1.48943598831261,1.73189829273498,1.666466251068,1.71601573326202,1.56340361529885,1.61384500307044,1.7121354526712,1.57348612520917,1.01265782728395],[1.70341847640034,1.82141627662339,1.45987885126886,1.486412174017,1.38584596308882,1.58692394267728,1.53483747909733,1.70793357598519,1.04401548474204,1.0111902531061],[1.61320141064453,1.75030778109795,1.33821218117322,1.88356155094549,1.67900690792371,1.62421108333421,1.63750938470093,1.59276833239683,1.01346212672595,1.00991529803909],[1.6299426119237,1.77577412408589,1.42011328755419,1.03101167684567,1.70164527412716,1.58420013326208,1.71078203920679,1.39544798342261,1.00705694553804,1.01139204455555],[1.66787970844804,1.79681022752445,1.03487934629354,1.85092607647001,1.7311756701668,1.74744815953981,1.76649715207532,1.23172262481145,1.01223589970782,1.00953556322057],[1.36327964304927,1,1.80891954895942,1.25231269052667,1.40311663836236,1.37599774570124,1.8158624399708,1.49560667911353,1.00815726647188,1.01143040160793],[1.37274957309133,1.76765503201375,1.77587272268172,1.66882182831212,1.71583763758062,1.7350987333459,1.6841352797177,1.84434959864139,1.00928240667489,1.24243694819784],[1.71090355235261,1.68610893310534,1.79015260286386,1.63879835026318,1.65243062933009,1.61373681116727,1.63401650440035,1.59903167621278,1.01558006642234,1.33029897084832]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_surface_plot_stack.html">marker_surface_plot_stack</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_splits</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">markers</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD4"</span>, <span class="st">"AMACR"</span>))</pre></body></html></div>
+<div id="htmlwidget-5cc54b8f86d0d93297e7" style="width:700px;height:432.632880098888px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5cc54b8f86d0d93297e7">{"x":{"visdat":{"4a06ccec314":["function () ","plotlyVisDat"]},"cur_data":"4a06ccec314","attrs":{"4a06ccec314":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":[[0.164275447919544,0.0903225825119645,0.0960991143857712,0.070835999175971,0.208823919803924,0.0928510079678558,0.0938399816181254,0.092560857371069,0.102191603587522,0.0850115773142415],[0.0789055060531444,0.120807891237049,0.071128646037502,0.0645219849560385,0.0793544472252439,0.373285529165856,0.10134289900694,0.104238996342324,0.128597082602653,0.0878530935133014],[0.0653846623119781,0.124650724616783,0.0708972907070199,0.111900634125186,0.0868194726419997,0.128840635113019,0.0699597425921754,0.0978592030060618,0.272540470797486,0.201500293381339],[0.0636423028564624,0.0915684552592701,0.145694147954448,0.197572274039985,0.212252731090625,0.069225806857124,0.0547074411747786,0.0809295908913776,0.793478837167256,0.949091983911312],[0.0614424627094473,0.0786787006626684,0.174610342408287,0.0881497232010843,0.0825661095793766,0.0713957446210648,0.0689233998808435,0.129357952483945,1,0.293572120231999],[0.0599548050287485,0.0778031782793545,0.128293607614383,0.326191244702221,0.0676948537150388,0.0622633747044404,0.101565913940169,0.536731531079585,0.794779454202182,0.600348064515056],[0.0659082010344327,0.0740762924584913,0.20885547016008,0.0962381057781532,0.109099275682264,0.0744504357188839,0.0981640195976444,0.472176911720501,0.42846763987191,0.383776954757159],[0.047443848068767,0,0.0779238583916491,0.216100220692276,0.159451556215155,0.161846566286885,0.126643129608,0.258548267053553,0.465955378676371,0.24151510815582],[0.0654275510773769,0.0580542328438468,0.0698279493622809,0.064337818381218,0.07043301508144,0.0720878484087263,0.0855238386309633,0.138466009359364,0.490628545948842,0.490968402441554],[0.0633832125393829,0.057303334367347,0.0731674771121412,0.0618827531351791,0.0581520952878504,0.0593639670037502,0.0844287530720002,0.199530368018883,0.565090541511334,0.26877354029381]],"type":"surface","colorscale":[[0,1],["rgb(255,255,255)","rgb(114,205,161)"]],"colorbar":{"title":"CD4"},"inherit":true},"4a06ccec314.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":[[1.44160627828233,1.67445123044629,1.68371820074645,1.69752299745022,1.47526418560842,1.75569238064096,1.76467557420692,1.69285196084981,1.76347794901005,1.75416343915002],[1.6989827365944,1.62722065757413,1.68092806122703,1.63186736019234,1.6785632951022,1.20565133631176,1.83010031328123,1.89105076542183,2,1.78888401662997],[1.70057909559824,1.48943598831261,1.73189829273498,1.666466251068,1.71601573326202,1.56340361529885,1.61384500307044,1.7121354526712,1.57348612520917,1.01265782728395],[1.70341847640034,1.82141627662339,1.45987885126886,1.486412174017,1.38584596308882,1.58692394267728,1.53483747909733,1.70793357598519,1.04401548474204,1.0111902531061],[1.61320141064453,1.75030778109795,1.33821218117322,1.88356155094549,1.67900690792371,1.62421108333421,1.63750938470093,1.59276833239683,1.01346212672595,1.00991529803909],[1.6299426119237,1.77577412408589,1.42011328755419,1.03101167684567,1.70164527412716,1.58420013326208,1.71078203920679,1.39544798342261,1.00705694553804,1.01139204455555],[1.66787970844804,1.79681022752445,1.03487934629354,1.85092607647001,1.7311756701668,1.74744815953981,1.76649715207532,1.23172262481145,1.01223589970782,1.00953556322057],[1.36327964304927,1,1.80891954895942,1.25231269052667,1.40311663836236,1.37599774570124,1.8158624399708,1.49560667911353,1.00815726647188,1.01143040160793],[1.37274957309133,1.76765503201375,1.77587272268172,1.66882182831212,1.71583763758062,1.7350987333459,1.6841352797177,1.84434959864139,1.00928240667489,1.24243694819784],[1.71090355235261,1.68610893310534,1.79015260286386,1.63879835026318,1.65243062933009,1.61373681116727,1.63401650440035,1.59903167621278,1.01558006642234,1.33029897084832]],"type":"surface","colorscale":[[0,1],["rgb(255,255,255)","rgb(200,81,185)"]],"colorbar":{"title":"AMACR"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"zaxis":{"title":[]}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.333333333333333}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"CD4","ticklen":2,"len":0.333333333333333,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[[0,"rgb(255,255,255)"],[1,"rgb(114,205,161)"]],"showscale":true,"z":[[0.164275447919544,0.0903225825119645,0.0960991143857712,0.070835999175971,0.208823919803924,0.0928510079678558,0.0938399816181254,0.092560857371069,0.102191603587522,0.0850115773142415],[0.0789055060531444,0.120807891237049,0.071128646037502,0.0645219849560385,0.0793544472252439,0.373285529165856,0.10134289900694,0.104238996342324,0.128597082602653,0.0878530935133014],[0.0653846623119781,0.124650724616783,0.0708972907070199,0.111900634125186,0.0868194726419997,0.128840635113019,0.0699597425921754,0.0978592030060618,0.272540470797486,0.201500293381339],[0.0636423028564624,0.0915684552592701,0.145694147954448,0.197572274039985,0.212252731090625,0.069225806857124,0.0547074411747786,0.0809295908913776,0.793478837167256,0.949091983911312],[0.0614424627094473,0.0786787006626684,0.174610342408287,0.0881497232010843,0.0825661095793766,0.0713957446210648,0.0689233998808435,0.129357952483945,1,0.293572120231999],[0.0599548050287485,0.0778031782793545,0.128293607614383,0.326191244702221,0.0676948537150388,0.0622633747044404,0.101565913940169,0.536731531079585,0.794779454202182,0.600348064515056],[0.0659082010344327,0.0740762924584913,0.20885547016008,0.0962381057781532,0.109099275682264,0.0744504357188839,0.0981640195976444,0.472176911720501,0.42846763987191,0.383776954757159],[0.047443848068767,0,0.0779238583916491,0.216100220692276,0.159451556215155,0.161846566286885,0.126643129608,0.258548267053553,0.465955378676371,0.24151510815582],[0.0654275510773769,0.0580542328438468,0.0698279493622809,0.064337818381218,0.07043301508144,0.0720878484087263,0.0855238386309633,0.138466009359364,0.490628545948842,0.490968402441554],[0.0633832125393829,0.057303334367347,0.0731674771121412,0.0618827531351791,0.0581520952878504,0.0593639670037502,0.0844287530720002,0.199530368018883,0.565090541511334,0.26877354029381]],"type":"surface","frame":null},{"colorbar":{"title":"AMACR","ticklen":2,"len":0.333333333333333,"lenmode":"fraction","y":0.666666666666667,"yanchor":"top"},"colorscale":[[0,"rgb(255,255,255)"],[1,"rgb(200,81,185)"]],"showscale":true,"z":[[1.44160627828233,1.67445123044629,1.68371820074645,1.69752299745022,1.47526418560842,1.75569238064096,1.76467557420692,1.69285196084981,1.76347794901005,1.75416343915002],[1.6989827365944,1.62722065757413,1.68092806122703,1.63186736019234,1.6785632951022,1.20565133631176,1.83010031328123,1.89105076542183,2,1.78888401662997],[1.70057909559824,1.48943598831261,1.73189829273498,1.666466251068,1.71601573326202,1.56340361529885,1.61384500307044,1.7121354526712,1.57348612520917,1.01265782728395],[1.70341847640034,1.82141627662339,1.45987885126886,1.486412174017,1.38584596308882,1.58692394267728,1.53483747909733,1.70793357598519,1.04401548474204,1.0111902531061],[1.61320141064453,1.75030778109795,1.33821218117322,1.88356155094549,1.67900690792371,1.62421108333421,1.63750938470093,1.59276833239683,1.01346212672595,1.00991529803909],[1.6299426119237,1.77577412408589,1.42011328755419,1.03101167684567,1.70164527412716,1.58420013326208,1.71078203920679,1.39544798342261,1.00705694553804,1.01139204455555],[1.66787970844804,1.79681022752445,1.03487934629354,1.85092607647001,1.7311756701668,1.74744815953981,1.76649715207532,1.23172262481145,1.01223589970782,1.00953556322057],[1.36327964304927,1,1.80891954895942,1.25231269052667,1.40311663836236,1.37599774570124,1.8158624399708,1.49560667911353,1.00815726647188,1.01143040160793],[1.37274957309133,1.76765503201375,1.77587272268172,1.66882182831212,1.71583763758062,1.7350987333459,1.6841352797177,1.84434959864139,1.00928240667489,1.24243694819784],[1.71090355235261,1.68610893310534,1.79015260286386,1.63879835026318,1.65243062933009,1.61373681116727,1.63401650440035,1.59903167621278,1.01558006642234,1.33029897084832]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="scatter-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#scatter-plots" class="anchor"></a>Scatter plots</h2>
 <p>Produces a scatter plot of the expression of every marker in each cell. Cells that were not phenotyped as being positive for the particular marker are excluded.</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_cell_marker_levels.html">plot_cell_marker_levels</a></span>(<span class="no">formatted_image</span>, <span class="kw">return_data</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
-<p><img src="introduction_files/figure-html/unnamed-chunk-12-1.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-2.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-3.png" width="700"></p>
-<pre><code>## [1] "There are no true expression for: FOXP3"</code></pre>
-<p><img src="introduction_files/figure-html/unnamed-chunk-12-4.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-5.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-6.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-7.png" width="700"></p>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_cell_marker_levels.html">plot_cell_marker_levels</a></span>(<span class="no">formatted_image</span>, <span class="kw">return_data</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<p><img src="introduction_files/figure-html/unnamed-chunk-12-1.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-2.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-3.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-4.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-5.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-12-6.png" width="700"></p>
 </div>
 <div id="split-images" class="section level2">
 <h2 class="hasAnchor">
 <a href="#split-images" class="anchor"></a>Split images</h2>
 <p>Takes in a singlecellexperiment object from format_image_to_sce, splits the image into specified sections and plots the different combinations of markers within the image segments.</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">split_image</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/image_splitter.html">image_splitter</a></span>(<span class="no">formatted_image</span>, <span class="kw">number_of_splits</span><span class="kw">=</span><span class="fl">3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">split_image</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/image_splitter.html">image_splitter</a></span>(<span class="no">formatted_image</span>, <span class="kw">number_of_splits</span><span class="kw">=</span><span class="fl">3</span>)</pre></body></html></div>
 </div>
 </div>
 <div id="cell-mixing" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cell-mixing" class="anchor"></a>Cell mixing</h1>
 <p>Returns the mixing score between a reference marker and a target marker. The mixing score is defined by: the number of target-reference interactions/number of reference-reference interactions within a specified radius.</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"PDL1"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"PDL1"</span>)</pre></body></html></div>
 <pre><code>## [1] "Number of reference cells: 513"
 ## [1] "Number of target cells: 4"
 ## [1] "Number of reference-target interactions: 4"
 ## [1] "Number of reference-reference interactions: 412"</code></pre>
 <pre><code>## [1] 0.009708738</code></pre>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"CD8"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"CD8"</span>)</pre></body></html></div>
 <pre><code>## [1] "Number of reference cells: 513"
 ## [1] "Number of target cells: 138"
 ## [1] "Number of reference-target interactions: 67"
 ## [1] "Number of reference-reference interactions: 412"</code></pre>
 <pre><code>## [1] 0.1626214</code></pre>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD8"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/compute_mixing_score.html">compute_mixing_score</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"CD8"</span>, <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"CD4"</span>)</pre></body></html></div>
 <pre><code>## [1] "Number of reference cells: 138"
 ## [1] "Number of target cells: 513"
 ## [1] "Number of reference-target interactions: 67"
@@ -267,38 +260,38 @@
 <a href="#marker-intensities-within-radii" class="anchor"></a>Marker intensities within radii</h1>
 <p>Calculation of marker expression levels within a radius</p>
 <p>Calculates the average intensity of the target_marker within a radius from the cells positive for the reference marker. Note that it pools all cells with the target marker that are within the specific radius of any reference cell. Results represent the average intensities within a radius, but do not correspond to metrics for each cell</p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/average_marker_expression_within_radius.html">average_marker_expression_within_radius</a></span>(<span class="no">formatted_image</span>,
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/average_marker_expression_within_radius.html">average_marker_expression_within_radius</a></span>(<span class="no">formatted_image</span>,
                                         <span class="kw">reference_marker</span> <span class="kw">=</span><span class="st">"AMACR"</span>,
                                         <span class="kw">target_marker</span> <span class="kw">=</span> <span class="st">"CD3"</span>,
                                         <span class="kw">radius</span><span class="kw">=</span><span class="fl">30</span>)</pre></body></html></div>
 <pre><code>## [1] 3.513658</code></pre>
 <p>Takes in a vector or radii and calculates the average expression of a target marker using average_expression function. It plots the expression level as a line graph.</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"AMACR"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"AMACR"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
-<div class="sourceCode" id="cb42"><html><body><pre class="r">#Commenting out below as get:
+<div class="sourceCode" id="cb40"><html><body><pre class="r">#Commenting out below as get:
 # "Error in average_marker_expression_within_radius(sce_object, reference_marker,  : There are no target cells within the specified radius, cannot calculate average expression"
 
 #plot_average_expression(formatted_image, reference_marker="AMACR", target_marker="PDL1", c(30, 35, 40, 45, 50, 75, 100))</pre></body></html></div>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD8"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD8"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"CD8"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_average_expression.html">plot_average_expression</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span><span class="kw">=</span><span class="st">"CD8"</span>, <span class="kw">target_marker</span><span class="kw">=</span><span class="st">"CD4"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">30</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">50</span>, <span class="fl">75</span>, <span class="fl">100</span>))</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
 </div>
 <div id="distances-between-phenotypes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#distances-between-phenotypes" class="anchor"></a>Distances between phenotypes</h1>
 <p>Calculates the average minimum distance of all cells in the sce_object</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/average_minimum_distance.html">average_minimum_distance</a></span>(<span class="no">formatted_image</span>) <span class="co">#between cells</span></pre></body></html></div>
+<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/average_minimum_distance.html">average_minimum_distance</a></span>(<span class="no">formatted_image</span>) <span class="co">#between cells</span></pre></body></html></div>
 <pre><code>## [1] 16.99093</code></pre>
 <p>Returns the mean, median and standard deviation of the distances between phenotypes</p>
-<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="no">summary_distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_summary_distances_between_phenotypes.html">calculate_summary_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">summary_distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_summary_distances_between_phenotypes.html">calculate_summary_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>)</pre></body></html></div>
 <pre><code>## [1] "All markers are used in pair-wise distance calculation: "
 ## [1] "AMACR"   "CD3,CD4" "CD3,CD8" "PDL1"</code></pre>
 <p>Takes the output of cell_distances and plot the distances as a heatmap</p>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_distance_heatmap.html">plot_distance_heatmap</a></span>(<span class="no">summary_distances</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb47"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_distance_heatmap.html">plot_distance_heatmap</a></span>(<span class="no">summary_distances</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
 <p>Returns the distances between cells of different phenotypes</p>
-<div class="sourceCode" id="cb50"><html><body><pre class="r"><span class="no">distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_all_distances_between_phenotypes.html">calculate_all_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>,
+<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="no">distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_all_distances_between_phenotypes.html">calculate_all_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>,
                                                         <span class="kw">remove_other</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
                                                         <span class="kw">cell_phenotypes_of_interest</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD3,CD4"</span>, <span class="st">"CD3,CD8"</span>))
 
@@ -307,10 +300,10 @@
 <p><img src="introduction_files/figure-html/unnamed-chunk-23-1.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-23-2.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-23-3.png" width="700"></p>
 <pre><code>## Warning: Removed 138 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="introduction_files/figure-html/unnamed-chunk-23-4.png" width="700"></p>
-<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="no">distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_all_distances_between_phenotypes.html">calculate_all_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>, <span class="kw">remove_other</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+<div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="no">distances</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/calculate_all_distances_between_phenotypes.html">calculate_all_distances_between_phenotypes</a></span>(<span class="no">formatted_image</span>, <span class="kw">remove_other</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
                                                         <span class="kw">cell_phenotypes_of_interest</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"AMACR"</span>, <span class="st">"CD3,CD8"</span>))</pre></body></html></div>
 <p>Plots distances between cells as a violin plot</p>
-<div class="sourceCode" id="cb54"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_cell_distances_violin.html">plot_cell_distances_violin</a></span>(<span class="no">distances</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb52"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_cell_distances_violin.html">plot_cell_distances_violin</a></span>(<span class="no">distances</span>)</pre></body></html></div>
 <pre><code>## Warning: Removed 4446 rows containing non-finite values (stat_ydensity).</code></pre>
 <p><img src="introduction_files/figure-html/unnamed-chunk-25-1.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-25-2.png" width="700"><img src="introduction_files/figure-html/unnamed-chunk-25-3.png" width="700"></p>
 <pre><code>## Warning: Removed 138 rows containing non-finite values (stat_ydensity).</code></pre>
@@ -320,12 +313,12 @@
 <h1 class="hasAnchor">
 <a href="#clustering-and-communities" class="anchor"></a>Clustering and communities</h1>
 <p>Uses Euclidean distances to identify clusters of cells within a specified radius.</p>
-<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_cell_clusters.html">identify_cell_clusters</a></span>(<span class="no">formatted_image</span>, <span class="kw">phenotypes_of_interest</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD3,CD4"</span>, <span class="st">"CD3,CD8"</span>),
+<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="no">clusters</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_cell_clusters.html">identify_cell_clusters</a></span>(<span class="no">formatted_image</span>, <span class="kw">phenotypes_of_interest</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD3,CD4"</span>, <span class="st">"CD3,CD8"</span>),
                                    <span class="kw">radius</span> <span class="kw">=</span> <span class="fl">30</span>)</pre></body></html></div>
 <pre><code>## Warning: Removed 88 rows containing missing values (geom_text).</code></pre>
 <p><img src="introduction_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
 <p>Identifies communities of cells based on their location. It excludes cells without a phenotype</p>
-<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">communities</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_cell_communities.html">identify_cell_communities</a></span>(<span class="no">formatted_image</span>, <span class="kw">radius</span><span class="kw">=</span><span class="fl">100</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="no">communities</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_cell_communities.html">identify_cell_communities</a></span>(<span class="no">formatted_image</span>, <span class="kw">radius</span><span class="kw">=</span><span class="fl">100</span>)</pre></body></html></div>
 <pre><code>## Warning: Use of `formatted_data$Community` is discouraged. Use `Community`
 ## instead.</code></pre>
 <pre><code>## Warning: Use of `formatted_data$Cell.X.Position` is discouraged. Use
@@ -333,17 +326,17 @@
 <pre><code>## Warning: Use of `formatted_data$Cell.Y.Position` is discouraged. Use
 ## `Cell.Y.Position` instead.</code></pre>
 <p><img src="introduction_files/figure-html/unnamed-chunk-27-1.png" width="700"></p>
-<div class="sourceCode" id="cb63"><html><body><pre class="r"># Adding radius=100 as dbscan needs a radius supplied. Not sure if 100 is appropriate but gives 10 communities (Rphenograph gave 17) but increasing or decreasing the radius gives less</pre></body></html></div>
+<div class="sourceCode" id="cb61"><html><body><pre class="r"># Adding radius=100 as dbscan needs a radius supplied. Not sure if 100 is appropriate but gives 10 communities (Rphenograph gave 17) but increasing or decreasing the radius gives less</pre></body></html></div>
 <p>Specific marker within each cluster and the number of cells in the cluster.</p>
-<div class="sourceCode" id="cb64"><html><body><pre class="r"><span class="no">clusters_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/composition_of_clusters_and_communities.html">composition_of_clusters_and_communities</a></span>(<span class="no">clusters</span>, <span class="st">"Cluster"</span>)
+<div class="sourceCode" id="cb62"><html><body><pre class="r"><span class="no">clusters_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/composition_of_clusters_and_communities.html">composition_of_clusters_and_communities</a></span>(<span class="no">clusters</span>, <span class="st">"Cluster"</span>)
 <span class="no">clusters_2</span> <span class="kw">&lt;-</span> <span class="no">clusters_2</span>[<span class="no">clusters_2</span>$<span class="no">Total_number_of_cells</span> <span class="kw">&gt;=</span><span class="fl">5</span>,]</pre></body></html></div>
 <p>Produces a heatmap showing the marker percentages within each cluster and the cluster sizes</p>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_composition_heatmap.html">plot_composition_heatmap</a></span>(<span class="no">clusters_2</span>, <span class="kw">column_to_consider</span><span class="kw">=</span><span class="st">"Cluster"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_composition_heatmap.html">plot_composition_heatmap</a></span>(<span class="no">clusters_2</span>, <span class="kw">column_to_consider</span><span class="kw">=</span><span class="st">"Cluster"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-29-1.png" width="700"></p>
-<div class="sourceCode" id="cb66"><html><body><pre class="r"><span class="no">communities_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/composition_of_clusters_and_communities.html">composition_of_clusters_and_communities</a></span>(<span class="no">communities</span>, <span class="st">"Community"</span>)
+<div class="sourceCode" id="cb64"><html><body><pre class="r"><span class="no">communities_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/composition_of_clusters_and_communities.html">composition_of_clusters_and_communities</a></span>(<span class="no">communities</span>, <span class="st">"Community"</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_composition_heatmap.html">plot_composition_heatmap</a></span>(<span class="no">communities_2</span>, <span class="kw">column_to_consider</span><span class="kw">=</span><span class="st">"Community"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-30-1.png" width="700"></p>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="no">communities_3</span> <span class="kw">&lt;-</span> <span class="no">communities_2</span>[<span class="no">communities_2</span>$<span class="no">Phenotype</span> <span class="kw">!=</span> <span class="st">"AMACR"</span>,]
+<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="no">communities_3</span> <span class="kw">&lt;-</span> <span class="no">communities_2</span>[<span class="no">communities_2</span>$<span class="no">Phenotype</span> <span class="kw">!=</span> <span class="st">"AMACR"</span>,]
 <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/plot_composition_heatmap.html">plot_composition_heatmap</a></span>(<span class="no">communities_3</span>, <span class="kw">column_to_consider</span><span class="kw">=</span><span class="st">"Community"</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-31-1.png" width="700"></p>
 </div>
@@ -352,47 +345,57 @@
 <a href="#neighbourhood-proportions" class="anchor"></a>Neighbourhood proportions</h1>
 <p>Calculate the percentage of cells surrounding another phenotype</p>
 <p>Calculates the percentage of cells of a target phenotype within a radius from the cells with a reference phenotype. The calculation is done per reference cell, so runtime will depend on the number of reference cells present.</p>
-<div class="sourceCode" id="cb68"><html><body><pre class="r">#Commenting out below as get:
+<div class="sourceCode" id="cb66"><html><body><pre class="r">#Commenting out below as get:
 # "Error in percentage_of_cells_within_radius(formatted_image, reference_phenotypes = "CD3",  : There are no reference cells or no target cells, calculation aborted"
 
 #percentage_of_cells_within_radius(formatted_image, reference_phenotypes = "CD3",
 #                                  target_phenotypes = "AMACR", radius=100)</pre></body></html></div>
-<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_bordering_cells.html">identify_bordering_cells</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"AMACR"</span>,
+<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/identify_bordering_cells.html">identify_bordering_cells</a></span>(<span class="no">formatted_image</span>, <span class="kw">reference_marker</span> <span class="kw">=</span> <span class="st">"AMACR"</span>,
                          <span class="kw">rm_noise_radius</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">radius</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">lower_bound</span> <span class="kw">=</span> <span class="fl">0.05</span>,
                          <span class="kw">upper_bound</span><span class="kw">=</span><span class="fl">0.7</span>)</pre></body></html></div>
 <p><img src="introduction_files/figure-html/unnamed-chunk-33-1.png" width="700"></p>
 <p>Get p-value for phenotypes</p>
 <p>Creates random combinations of phenotypes by shuffling markers and calculates the enrichment and depletion p values</p>
-<div class="sourceCode" id="cb70"><html><body><pre class="r"># Commenting out below as get:
-# "Error in `$&lt;-.data.frame`(`*tmp*`, Phenotype, value = "FOXP3,") : replacement has 1 row, data has 0"
-
-#sig &lt;- marker_permutation(formatted_image, num_iter = 100)</pre></body></html></div>
+<div class="sourceCode" id="cb68"><html><body><pre class="r"><span class="no">sig</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_permutation.html">marker_permutation</a></span>(<span class="no">formatted_image</span>, <span class="kw">num_iter</span> <span class="kw">=</span> <span class="fl">100</span>)</pre></body></html></div>
 </div>
 <div id="predict-phenotypes" class="section level1">
 <h1 class="hasAnchor">
 <a href="#predict-phenotypes" class="anchor"></a>Predict phenotypes</h1>
 <p>Predict phenotypes based on marker expression levels</p>
 <p>Produces a density plot showing actual and predicted cutoff of a positive reading for marker expression. It also prints to the console of the number of true positives (TP), true negatives (TN), false positives (FP) and false negatives (FN) under the prediction. It returns a dataframe containing the predicted expression status for a particular marker</p>
-<div class="sourceCode" id="cb71"><html><body><pre class="r"># Commenting out below as get:
-# Error in `$&lt;-.data.frame`(`*tmp*`, Phenotype, value = "FOXP3,") : replacement has 1 row, data has 0"
-
-# #predicted_image &lt;- predict_phenotypes(formatted_image,
-#                                       plot_actual_cutoff = TRUE,
-#                                       plot_predicted_cutoff = TRUE,
-#                                       thresholds = NULL,
-#                                       tumour_marker = "AMACR",
-#                                       baseline_markers = c("CD3", "CD4", "CD8"))</pre></body></html></div>
+<div class="sourceCode" id="cb69"><html><body><pre class="r"><span class="no">predicted_image</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/predict_phenotypes.html">predict_phenotypes</a></span>(<span class="no">formatted_image</span>,
+                                      <span class="kw">plot_actual_cutoff</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+                                      <span class="kw">plot_predicted_cutoff</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+                                      <span class="kw">thresholds</span> <span class="kw">=</span> <span class="kw">NULL</span>,
+                                      <span class="kw">tumour_marker</span> <span class="kw">=</span> <span class="st">"AMACR"</span>,
+                                      <span class="kw">baseline_markers</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD3"</span>, <span class="st">"CD4"</span>, <span class="st">"CD8"</span>))</pre></body></html></div>
+<pre><code>## [1] "For CD3:"
+## [1] "TP:644 TN:4352 FP:98 FN:6"</code></pre>
+<p><img src="introduction_files/figure-html/unnamed-chunk-35-1.png" width="700"></p>
+<pre><code>## [1] "For PDL1:"
+## [1] "TP:2 TN:4884 FP:212 FN:2"</code></pre>
+<p><img src="introduction_files/figure-html/unnamed-chunk-35-2.png" width="700"></p>
+<pre><code>## [1] "For CD4:"
+## [1] "TP:449 TN:4423 FP:165 FN:63"</code></pre>
+<p><img src="introduction_files/figure-html/unnamed-chunk-35-3.png" width="700"></p>
+<pre><code>## [1] "For CD8:"
+## [1] "TP:138 TN:4705 FP:257 FN:0"</code></pre>
+<p><img src="introduction_files/figure-html/unnamed-chunk-35-4.png" width="700"></p>
+<pre><code>## [1] "For AMACR:"
+## [1] "TP:4413 TN:637 FP:17 FN:33"</code></pre>
+<p><img src="introduction_files/figure-html/unnamed-chunk-35-5.png" width="700"></p>
 <p>Takes in the returned dataframe from marker_threshold_plot and generates a .pdf file containing scatter plots of actual expression and predicted expression for every marker.</p>
-<div class="sourceCode" id="cb72"><html><body><pre class="r"># Commenting out as no predicted_image at moment
-
-#marker_prediction_plot(predicted_image, marker="AMACR")
-#marker_prediction_plot(predicted_image, marker="CD4")
-#marker_prediction_plot(predicted_image, marker="CD8")</pre></body></html></div>
+<div class="sourceCode" id="cb75"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_prediction_plot.html">marker_prediction_plot</a></span>(<span class="no">predicted_image</span>, <span class="kw">marker</span><span class="kw">=</span><span class="st">"AMACR"</span>)</pre></body></html></div>
+<p><img src="introduction_files/figure-html/unnamed-chunk-36-1.png" width="700"></p>
+<div class="sourceCode" id="cb76"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_prediction_plot.html">marker_prediction_plot</a></span>(<span class="no">predicted_image</span>, <span class="kw">marker</span><span class="kw">=</span><span class="st">"CD4"</span>)</pre></body></html></div>
+<p><img src="introduction_files/figure-html/unnamed-chunk-36-2.png" width="700"></p>
+<div class="sourceCode" id="cb77"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/SPIAT/man/marker_prediction_plot.html">marker_prediction_plot</a></span>(<span class="no">predicted_image</span>, <span class="kw">marker</span><span class="kw">=</span><span class="st">"CD8"</span>)</pre></body></html></div>
+<p><img src="introduction_files/figure-html/unnamed-chunk-36-3.png" width="700"></p>
 </div>
 <div id="reproducibility" class="section level1">
 <h1 class="hasAnchor">
 <a href="#reproducibility" class="anchor"></a>Reproducibility</h1>
-<div class="sourceCode" id="cb73"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb78"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</pre></body></html></div>
 <pre><code>## R version 4.0.2 Patched (2020-08-13 r79017)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04 LTS
