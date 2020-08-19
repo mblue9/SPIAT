@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="plot_cell_marker_levels — plot_cell_marker_levels" />
-<meta property="og:description" content="Produces a scatter plot of the level of every marker in each cell.
+<meta property="og:description" content="Produces a scatter plot of the level of a marker in each cell.
 Cells that were not phenotyped as being positive for the particular marker are excluded." />
 
 
@@ -130,16 +130,11 @@ Cells that were not phenotyped as being positive for the particular marker are e
     </div>
 
     <div class="ref-description">
-    <p>Produces a scatter plot of the level of every marker in each cell.
+    <p>Produces a scatter plot of the level of a marker in each cell.
 Cells that were not phenotyped as being positive for the particular marker are excluded.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_cell_marker_levels</span>(
-  <span class='no'>sce_object</span>,
-  <span class='kw'>print</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>filename</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_cell_marker_levels</span>(<span class='no'>sce_object</span>, <span class='no'>marker</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,16 +144,8 @@ Cells that were not phenotyped as being positive for the particular marker are e
       <td><p>Singlecellexperiment object in the form of the output of format_image_to_sce</p></td>
     </tr>
     <tr>
-      <th>print</th>
-      <td><p>TRUE for plots to be printed, FALSE otherwise</p></td>
-    </tr>
-    <tr>
-      <th>filename</th>
-      <td><p>Path and name of output pdf file if to be printing to a file, if required</p></td>
-    </tr>
-    <tr>
-      <th>return_data</th>
-      <td><p>TRUE if the function should return the formatted data for plotting</p></td>
+      <th>marker</th>
+      <td><p>Marker to plot</p></td>
     </tr>
     </table>
 
