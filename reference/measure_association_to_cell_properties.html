@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>format_image_to_sce — format_image_to_sce • SPIAT</title>
+<title>measure_association_to_cell_properties — measure_association_to_cell_properties • SPIAT</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,8 @@
 
 
 
-<meta property="og:title" content="format_image_to_sce — format_image_to_sce" />
-<meta property="og:description" content="Formats an INFORM or HALO image into a singlecellexperiment class
-where the count assay stores the expression level of every marker (rows) for
-every cell (columns), 
-and cell phenotype, x and y coordinates, other properties (Cell Size, Nucleus Size, 
-Nucleus Compactness, Nucleus Axis Ratio, Cell Axis Ratio ) are stored under colData" />
+<meta property="og:title" content="measure_association_to_cell_properties — measure_association_to_cell_properties" />
+<meta property="og:description" content="Plots the density or boxplot of a property of two cell phenotypes or compares using t test/wilcoxon rank sum test" />
 
 
 
@@ -127,52 +123,60 @@ Nucleus Compactness, Nucleus Axis Ratio, Cell Axis Ratio ) are stored under colD
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>format_image_to_sce</h1>
-    <small class="dont-index">Source: <a href='https://github.com/cancer-evolution/SPIAT/blob/master/R/format_image_to_sce.R'><code>R/format_image_to_sce.R</code></a></small>
-    <div class="hidden name"><code>format_image_to_sce.Rd</code></div>
+    <h1>measure_association_to_cell_properties</h1>
+    <small class="dont-index">Source: <a href='https://github.com/cancer-evolution/SPIAT/blob/master/R/measure_association_to_cell_properties.R'><code>R/measure_association_to_cell_properties.R</code></a></small>
+    <div class="hidden name"><code>measure_association_to_cell_properties.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Formats an INFORM or HALO image into a singlecellexperiment class
-where the count assay stores the expression level of every marker (rows) for
-every cell (columns), 
-and cell phenotype, x and y coordinates, other properties (Cell Size, Nucleus Size, 
-Nucleus Compactness, Nucleus Axis Ratio, Cell Axis Ratio ) are stored under colData</p>
+    <p>Plots the density or boxplot of a property of two cell phenotypes or compares using t test/wilcoxon rank sum test</p>
     </div>
 
-    <pre class="usage"><span class='fu'>format_image_to_sce</span>(
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"INFORM"</span>,
-  <span class='no'>image</span>,
-  <span class='no'>markers</span>,
-  <span class='kw'>dye_columns_interest</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>intensity_columns_interest</span>
+    <pre class="usage"><span class='fu'>measure_association_to_cell_properties</span>(
+  <span class='no'>sce_object</span>,
+  <span class='kw'>property</span> <span class='kw'>=</span> <span class='st'>"Cell.Size"</span>,
+  <span class='no'>phenotypes</span>,
+  <span class='kw'>merge</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>merge_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
+  <span class='kw'>Nucleus.Ratio</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>log.scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>format</th>
-      <td><p>String defining the software use for cell segmentation. Options: "INFORM" or "HALO"</p></td>
+      <th>sce_object</th>
+      <td><p>SingleCellExperiment object in the form of the output of format_image_to_sce</p></td>
     </tr>
     <tr>
-      <th>image</th>
-      <td><p>String of the path location of either HALO csv file or INFORM textfile</p></td>
+      <th>property</th>
+      <td><p>String that is the name of the column of interest</p></td>
     </tr>
     <tr>
-      <th>markers</th>
-      <td><p>Vector containing the markers used for staining</p></td>
+      <th>phenotypes</th>
+      <td><p>Vector of phenotypes of interest</p></td>
     </tr>
     <tr>
-      <th>dye_columns_interest</th>
-      <td><p>(Only for HALO formats) Vector of names of the columns with the marker status 
-(i.e. those indicating 1 or 0 for whether the cell is positive or negative for the marker). 
-Column names must match the order of the 'markers' parameter.</p></td>
+      <th>merge</th>
+      <td><p>Vector of phenotypes to be merged</p></td>
     </tr>
     <tr>
-      <th>intensity_columns_interest</th>
-      <td><p>Vector with the names of the columns with the level of each marker.
-Column names must match the order of the 'markers' parameter</p></td>
+      <th>merge_name</th>
+      <td><p>String that is the name of the merged phenotype</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>the analysis to do on the selected phenotypes and property. Options are density, box, t, wilcox</p></td>
+    </tr>
+    <tr>
+      <th>Nucleus.Ratio</th>
+      <td><p>when the ratio of the nucleus size is of interest</p></td>
+    </tr>
+    <tr>
+      <th>log.scale</th>
+      <td><p>if log the data</p></td>
     </tr>
     </table>
 
