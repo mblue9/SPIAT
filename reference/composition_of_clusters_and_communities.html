@@ -152,7 +152,12 @@ specific marker within each cluster and the number of cells in the cluster.</p>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A data.frame is returned</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>communities</span> <span class='kw'>&lt;-</span> <span class='fu'>identify_cell_communities</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>, <span class='kw'>radius</span><span class='kw'>=</span><span class='fl'>100</span>)</div><div class='img'><img src='composition_of_clusters_and_communities-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>communities_vis</span> <span class='kw'>&lt;-</span> <span class='fu'>composition_of_clusters_and_communities</span>(<span class='no'>communities</span>, <span class='st'>"Community"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
