@@ -132,7 +132,11 @@
     <p>Plots cells proportions as barplots</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_cell_percentages</span>(<span class='no'>cell_proportions</span>, <span class='kw'>tumour_marker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_cell_percentages</span>(
+  <span class='no'>cell_proportions</span>,
+  <span class='kw'>tumour_marker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cellprop_colname</span> <span class='kw'>=</span> <span class='st'>"Proportion_name"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,6 +148,10 @@
     <tr>
       <th>tumour_marker</th>
       <td><p>Tumour marker to exclude if needed</p></td>
+    </tr>
+    <tr>
+      <th>cellprop_colname</th>
+      <td><p>Column to use for y axis names. Default is "Proportion_name"</p></td>
     </tr>
     </table>
 
