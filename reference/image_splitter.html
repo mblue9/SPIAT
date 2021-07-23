@@ -74,7 +74,7 @@ of markers within the image segments." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SPIAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ of markers within the image segments." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,7 +108,7 @@ of markers within the image segments." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cancer-evolution/SPIAT/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,17 +136,17 @@ splits the image into specified sections and plots the different combinations
 of markers within the image segments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>image_splitter</span>(
-  <span class='no'>sce_object</span>,
-  <span class='no'>number_of_splits</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>cut_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>colour_vector</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_position_min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_position_max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_position_min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_position_max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>image_splitter</span><span class='op'>(</span>
+  <span class='va'>sce_object</span>,
+  <span class='va'>number_of_splits</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  cut_labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  colour_vector <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_position_min <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_position_max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_position_min <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_position_max <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,7 +195,8 @@ If NULL, colors will be generated automatically</p></td>
     <p>A list of data.frames is returned</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>split_image</span> <span class='kw'>&lt;-</span> <span class='fu'>image_splitter</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>, <span class='kw'>number_of_splits</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>split_image</span> <span class='op'>&lt;-</span> <span class='fu'>image_splitter</span><span class='op'>(</span><span class='fu'>SPIAT</span><span class='fu'>::</span><span class='va'><a href='formatted_image.html'>formatted_image</a></span>, number_of_splits<span class='op'>=</span><span class='fl'>3</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +212,7 @@ If NULL, colors will be generated automatically</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

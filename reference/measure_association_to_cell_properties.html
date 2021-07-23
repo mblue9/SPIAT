@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SPIAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,7 +106,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cancer-evolution/SPIAT/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,16 +132,16 @@
     <p>Plots the density or boxplot of a property of two cell phenotypes or compares using t test/wilcoxon rank sum test</p>
     </div>
 
-    <pre class="usage"><span class='fu'>measure_association_to_cell_properties</span>(
-  <span class='no'>sce_object</span>,
-  <span class='kw'>property</span> <span class='kw'>=</span> <span class='st'>"Cell.Area"</span>,
-  <span class='no'>phenotypes</span>,
-  <span class='kw'>merge</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>merge_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"density"</span>,
-  <span class='kw'>Nucleus.Ratio</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>log.scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>measure_association_to_cell_properties</span><span class='op'>(</span>
+  <span class='va'>sce_object</span>,
+  property <span class='op'>=</span> <span class='st'>"Cell.Area"</span>,
+  <span class='va'>phenotypes</span>,
+  merge <span class='op'>=</span> <span class='cn'>NULL</span>,
+  merge_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  method <span class='op'>=</span> <span class='st'>"density"</span>,
+  Nucleus.Ratio <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  log.scale <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,13 +185,15 @@
     <p>With method "box" or "density a plot is returned. With method "t" or "wilcox", the text output from the test are returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>measure_association_to_cell_properties</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>,
-                                      <span class='kw'>phenotypes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CD3,CD4"</span>, <span class='st'>"CD3,CD8"</span>),
-                                      <span class='kw'>property</span> <span class='kw'>=</span> <span class='st'>"Cell.Area"</span>,
-                                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"box"</span>)</div><div class='img'><img src='measure_association_to_cell_properties-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>measure_association_to_cell_properties</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>,
-                                      <span class='kw'>phenotypes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CD3,CD4"</span>, <span class='st'>"CD3,CD8"</span>),
-                                      <span class='kw'>property</span> <span class='kw'>=</span> <span class='st'>"Cell.Area"</span>,
-                                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"t"</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>measure_association_to_cell_properties</span><span class='op'>(</span><span class='fu'>SPIAT</span><span class='fu'>::</span><span class='va'><a href='formatted_image.html'>formatted_image</a></span>,
+                                      phenotypes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CD3,CD4"</span>, <span class='st'>"CD3,CD8"</span><span class='op'>)</span>,
+                                      property <span class='op'>=</span> <span class='st'>"Cell.Area"</span>,
+                                      method <span class='op'>=</span> <span class='st'>"box"</span><span class='op'>)</span>
+</div><div class='img'><img src='measure_association_to_cell_properties-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>measure_association_to_cell_properties</span><span class='op'>(</span><span class='fu'>SPIAT</span><span class='fu'>::</span><span class='va'><a href='formatted_image.html'>formatted_image</a></span>,
+                                      phenotypes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CD3,CD4"</span>, <span class='st'>"CD3,CD8"</span><span class='op'>)</span>,
+                                      property <span class='op'>=</span> <span class='st'>"Cell.Area"</span>,
+                                      method <span class='op'>=</span> <span class='st'>"t"</span><span class='op'>)</span>                                     
+</div><div class='output co'>#&gt; 
 #&gt; 	Welch Two Sample t-test
 #&gt; 
 #&gt; data:  CD3,CD4 and CD3,CD8
@@ -218,7 +220,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

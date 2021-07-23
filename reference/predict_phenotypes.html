@@ -76,7 +76,7 @@ the predicted intensity status for a particular marker," />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SPIAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ the predicted intensity status for a particular marker," />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@ the predicted intensity status for a particular marker," />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cancer-evolution/SPIAT/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,12 +140,12 @@ false negatives (FN) under the prediction. It returns a dataframe containing
 the predicted intensity status for a particular marker,</p>
     </div>
 
-    <pre class="usage"><span class='fu'>predict_phenotypes</span>(
-  <span class='no'>sce_object</span>,
-  <span class='kw'>thresholds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>tumour_marker</span>,
-  <span class='no'>baseline_markers</span>
-)</pre>
+    <pre class="usage"><span class='fu'>predict_phenotypes</span><span class='op'>(</span>
+  <span class='va'>sce_object</span>,
+  thresholds <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>tumour_marker</span>,
+  <span class='va'>baseline_markers</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,10 +174,11 @@ The order must match the marker order, and it should be NA for DAPI.</p></td>
     <p>A data.frame and plots are returned</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>predicted_image</span> <span class='kw'>&lt;-</span> <span class='fu'>predict_phenotypes</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>,
-                                      <span class='kw'>thresholds</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-                                      <span class='kw'>tumour_marker</span> <span class='kw'>=</span> <span class='st'>"AMACR"</span>,
-                                      <span class='kw'>baseline_markers</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CD3"</span>, <span class='st'>"CD4"</span>, <span class='st'>"CD8"</span>))</div><div class='output co'>#&gt; [1] "For CD3:"
+    <pre class="examples"><div class='input'><span class='va'>predicted_image</span> <span class='op'>&lt;-</span> <span class='fu'>predict_phenotypes</span><span class='op'>(</span><span class='fu'>SPIAT</span><span class='fu'>::</span><span class='va'><a href='formatted_image.html'>formatted_image</a></span>,
+                                      thresholds <span class='op'>=</span> <span class='cn'>NULL</span>,
+                                      tumour_marker <span class='op'>=</span> <span class='st'>"AMACR"</span>,
+                                      baseline_markers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CD3"</span>, <span class='st'>"CD4"</span>, <span class='st'>"CD8"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "For CD3:"
 #&gt; [1] "TP:660 TN:6646 FP:1098 FN:9"</div><div class='img'><img src='predict_phenotypes-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "For PDL-1:"
 #&gt; [1] "TP:2 TN:8182 FP:227 FN:2"</div><div class='img'><img src='predict_phenotypes-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "For CD4:"
 #&gt; [1] "TP:410 TN:7472 FP:429 FN:102"</div><div class='img'><img src='predict_phenotypes-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "For CD8:"
@@ -198,7 +199,7 @@ The order must match the marker order, and it should be NA for DAPI.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

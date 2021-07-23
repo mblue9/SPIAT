@@ -75,7 +75,7 @@ cells present." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SPIAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ cells present." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,7 +109,7 @@ cells present." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/cancer-evolution/SPIAT/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -138,12 +138,12 @@ The calculation is done per reference cell, so runtime will depend on the number
 cells present.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>percentage_of_cells_within_radius</span>(
-  <span class='no'>sce_object</span>,
-  <span class='no'>reference_phenotypes</span>,
-  <span class='no'>target_phenotypes</span>,
-  <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>100</span>
-)</pre>
+    <pre class="usage"><span class='fu'>percentage_of_cells_within_radius</span><span class='op'>(</span>
+  <span class='va'>sce_object</span>,
+  <span class='va'>reference_phenotypes</span>,
+  <span class='va'>target_phenotypes</span>,
+  radius <span class='op'>=</span> <span class='fl'>100</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,7 +172,8 @@ Radii of ~100 are recommended. If too small, too few cells might be present</p><
     <p>A numeric vector ard a plot are returned</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>p_cells_within_radius</span> <span class='kw'>&lt;-</span> <span class='fu'>percentage_of_cells_within_radius</span>(<span class='kw pkg'>SPIAT</span><span class='kw ns'>::</span><span class='no'>formatted_image</span>, <span class='kw'>reference_phenotypes</span> <span class='kw'>=</span> <span class='st'>"PDL-1"</span>, <span class='kw'>target_phenotypes</span> <span class='kw'>=</span> <span class='st'>"AMACR"</span>, <span class='kw'>radius</span><span class='kw'>=</span><span class='fl'>100</span>)</div><div class='img'><img src='percentage_of_cells_within_radius-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>p_cells_within_radius</span> <span class='op'>&lt;-</span> <span class='fu'>percentage_of_cells_within_radius</span><span class='op'>(</span><span class='fu'>SPIAT</span><span class='fu'>::</span><span class='va'><a href='formatted_image.html'>formatted_image</a></span>, reference_phenotypes <span class='op'>=</span> <span class='st'>"PDL-1"</span>, target_phenotypes <span class='op'>=</span> <span class='st'>"AMACR"</span>, radius<span class='op'>=</span><span class='fl'>100</span><span class='op'>)</span>
+</div><div class='img'><img src='percentage_of_cells_within_radius-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -188,7 +189,7 @@ Radii of ~100 are recommended. If too small, too few cells might be present</p><
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
